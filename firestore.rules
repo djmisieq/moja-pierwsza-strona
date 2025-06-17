@@ -1,32 +1,155 @@
 rules_version = '2';
+
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Allow read access to news articles for everyone
-    match /news/{document} {
-      allow read: if true;
-      allow write: if request.auth != null && request.auth.token.admin == true;
+    
+    // Funkcje pomocnicze
+    function isAuthenticated() {
+      return request.auth != null;
     }
     
-    // Allow read access to announcements for everyone
-    match /announcements/{document} {
-      allow read: if true;
-      allow write: if request.auth != null;
+    function isOwner(resource) {
+      return request.auth.uid == resource.data.authorId;
     }
     
-    // Allow read/write access to comments for authenticated users
-    match /comments/{document} {
-      allow read: if true;
-      allow write: if request.auth != null;
+    function hasRole(role) {
+      return isAuthenticated() && 
+             exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == role;
     }
     
-    // User profiles - users can only access their own data
+    function hasAnyRole(roles) {
+      return isAuthenticated() && 
+             exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in roles;
+    }
+    
+    function isPublished(resource) {
+      return resource.data.status == 'published';
+    }
+
+    // Użytkownicy - zarządzanie rolami
     match /users/{userId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
+      allow read: if isAuthenticated();
+      allow write: if request.auth.uid == userId || hasRole('admin');
+    }
+
+    // Posty/Artykuły
+    match /posts/{postId} {
+      // Czytanie - wszyscy mogą czytać opublikowane, autorzy swoje drafty
+      allow read: if isPublished(resource) || 
+                     (isAuthenticated() && (isOwner(resource) || hasAnyRole(['admin', 'editor', 'moderator'])));
+      
+      // Tworzenie - autorzy, redaktorzy, administratorzy
+      allow create: if hasAnyRole(['admin', 'editor', 'author']) && 
+                       request.auth.uid == request.resource.data.authorId;
+      
+      // Aktualizacja - właściciel lub redaktor/admin
+      allow update: if (isOwner(resource) && hasAnyRole(['admin', 'editor', 'author'])) ||
+                       hasAnyRole(['admin', 'editor']);
+      
+      // Usuwanie - tylko redaktor/admin
+      allow delete: if hasAnyRole(['admin', 'editor']);
+    }
+
+    // Kategorie
+    match /categories/{categoryId} {
+      allow read: if true; // publiczne
+      allow write: if hasAnyRole(['admin', 'editor']);
+    }
+
+    // Tagi
+    match /tags/{tagId} {
+      allow read: if true; // publiczne
+      allow write: if hasAnyRole(['admin', 'editor']);
+    }
+
+    // Autorzy/Redaktorzy
+    match /authors/{authorId} {
+      allow read: if true; // publiczne profile
+      allow write: if request.auth.uid == authorId || hasRole('admin');
+    }
+
+    // Ogłoszenia
+    match /classifieds/{classifiedId} {
+      // Czytanie - opublikowane dla wszystkich, swoje dla właściciela
+      allow read: if isPublished(resource) || 
+                     (isAuthenticated() && isOwner(resource)) ||
+                     hasAnyRole(['admin', 'editor', 'moderator']);
+      
+      // Tworzenie - uwierzytelnieni użytkownicy
+      allow create: if isAuthenticated() && 
+                       request.auth.uid == request.resource.data.authorId;
+      
+      // Aktualizacja - właściciel lub admin/moderator
+      allow update: if (isOwner(resource) && isAuthenticated()) ||
+                       hasAnyRole(['admin', 'editor', 'moderator']);
+      
+      // Usuwanie - właściciel lub admin/moderator
+      allow delete: if (isOwner(resource) && isAuthenticated()) ||
+                       hasAnyRole(['admin', 'editor', 'moderator']);
+    }
+
+    // Wydarzenia
+    match /events/{eventId} {
+      allow read: if isPublished(resource) || hasAnyRole(['admin', 'editor', 'author']);
+      allow create: if hasAnyRole(['admin', 'editor', 'author']) && 
+                       request.auth.uid == request.resource.data.authorId;
+      allow update: if isOwner(resource) || hasAnyRole(['admin', 'editor']);
+      allow delete: if hasAnyRole(['admin', 'editor']);
+    }
+
+    // Komentarze
+    match /posts/{postId}/comments/{commentId} {
+      allow read: if true; // komentarze są publiczne
+      allow create: if isAuthenticated() && 
+                       request.auth.uid == request.resource.data.authorId;
+      allow update: if (isOwner(resource) && isAuthenticated()) ||
+                       hasAnyRole(['admin', 'editor', 'moderator']);
+      allow delete: if (isOwner(resource) && isAuthenticated()) ||
+                       hasAnyRole(['admin', 'editor', 'moderator']);
+    }
+
+    // Komentarze do wydarzeń
+    match /events/{eventId}/comments/{commentId} {
+      allow read: if true;
+      allow create: if isAuthenticated() && 
+                       request.auth.uid == request.resource.data.authorId;
+      allow update: if (isOwner(resource) && isAuthenticated()) ||
+                       hasAnyRole(['admin', 'editor', 'moderator']);
+      allow delete: if (isOwner(resource) && isAuthenticated()) ||
+                       hasAnyRole(['admin', 'editor', 'moderator']);
+    }
+
+    // Płatności Stripe (zarządzane przez extension)
+    match /customers/{userId} {
+      allow read, write: if request.auth.uid == userId;
     }
     
-    // Admin only collections
-    match /admin/{document} {
-      allow read, write: if request.auth != null && request.auth.token.admin == true;
+    match /customers/{userId}/checkout_sessions/{sessionId} {
+      allow read, write: if request.auth.uid == userId;
+    }
+    
+    match /customers/{userId}/subscriptions/{subscriptionId} {
+      allow read: if request.auth.uid == userId;
+    }
+
+    // Ustawienia portalu (tylko admin)
+    match /settings/{settingId} {
+      allow read: if true; // publiczne ustawienia (np. nazwa portalu)
+      allow write: if hasRole('admin');
+    }
+
+    // Newsletter subscriptions
+    match /newsletter/{email} {
+      allow read: if hasAnyRole(['admin', 'editor']);
+      allow create: if true; // każdy może się zapisać
+      allow update, delete: if hasAnyRole(['admin', 'editor']);
+    }
+
+    // Analytics i statystyki (tylko admin/editor)
+    match /analytics/{document=**} {
+      allow read, write: if hasAnyRole(['admin', 'editor']);
     }
   }
 }
