@@ -3,211 +3,346 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Local News - Premium Portal Ekonomiczny</title>
+    <title>Ełk24.pl - Portal lokalny Ełku i okolic</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
-        <nav class="nav">
-            <div class="nav-container">
-                <div class="logo">
-                    <h1>LOCAL NEWS</h1>
-                    <span class="tagline">Premium portal lokalny</span>
+    <!-- Ruchomy slider z ogłoszeniami -->
+    <div class="ads-slider">
+        <div class="ads-container">
+            <div class="ads-track">
+                <div class="ad-item">
+                    <span class="ad-label">REKLAMA</span>
+                    <span class="ad-content">🏠 <strong>NIERUCHOMOŚCI EŁK</strong> - Kupno, sprzedaż, wynajem | Tel: 87-621-0000</span>
                 </div>
+                <div class="ad-item">
+                    <span class="ad-label">REKLAMA</span>
+                    <span class="ad-content">🚗 <strong>SERWIS BMW EŁK</strong> - Profesjonalna obsługa | ul. Przemysłowa 15</span>
+                </div>
+                <div class="ad-item">
+                    <span class="ad-label">REKLAMA</span>
+                    <span class="ad-content">⚕️ <strong>PRYWATNA KLINIKA MEDICA</strong> - Bez kolejek, 24/7 | Zapisz się online</span>
+                </div>
+                <div class="ad-item">
+                    <span class="ad-label">REKLAMA</span>
+                    <span class="ad-content">🍕 <strong>PIZZERIA BELLA EŁK</strong> - Najlepsza pizza w mieście | Dostawa gratis</span>
+                </div>
+                <div class="ad-item">
+                    <span class="ad-label">REKLAMA</span>
+                    <span class="ad-content">💼 <strong>BIURO RACHUNKOWE AS</strong> - Księgowość, ZUS, podatki | ul. Mickiewicza 23</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo-section">
+                    <h1 class="logo">Ełk24.pl</h1>
+                    <p class="tagline">Twoje miasto na bieżąco</p>
+                </div>
+                <div class="header-info">
+                    <div class="weather">
+                        <span class="weather-icon">☀️</span>
+                        <span class="weather-temp">22°C</span>
+                        <span class="weather-desc">Słonecznie</span>
+                    </div>
+                    <div class="date-time">
+                        <span class="current-date" id="currentDate"></span>
+                        <span class="current-time" id="currentTime"></span>
+                    </div>
+                </div>
+            </div>
+            <nav class="main-nav">
                 <ul class="nav-menu">
-                    <li><a href="#ekonomia">Ekonomia</a></li>
+                    <li><a href="#aktualnosci" class="active">Aktualności</a></li>
+                    <li><a href="#sport">Sport</a></li>
+                    <li><a href="#kultura">Kultura</a></li>
                     <li><a href="#biznes">Biznes</a></li>
-                    <li><a href="#technologie">Technologie</a></li>
-                    <li><a href="#analizy">Analizy</a></li>
-                    <li><a href="#o-nas">O nas</a></li>
+                    <li><a href="#ogloszenia" class="highlight">Ogłoszenia</a></li>
+                    <li><a href="#imprezy">Imprezy</a></li>
+                    <li><a href="#kontakt">Kontakt</a></li>
                 </ul>
                 <div class="nav-actions">
-                    <button class="subscribe-btn">Subskrypcja</button>
-                    <button class="login-btn">Zaloguj</button>
+                    <button class="btn-add-ad">+ Dodaj ogłoszenie</button>
+                    <button class="search-btn">🔍</button>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </header>
 
-    <main class="main">
-        <section class="hero-minimal">
-            <div class="container">
-                <div class="hero-content">
-                    <h2>Medium nowej kategorii dla ludzi ciekawych lokalnego biznesu</h2>
-                    <p>Poszukujących rzetelnych i pogłębionych informacji oraz analiz z lokalnej gospodarki, a nie szybkich newsów.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="featured-article">
-            <div class="container">
-                <article class="main-article">
-                    <div class="article-meta">
-                        <span class="author">Redakcja Local News</span>
-                        <span class="date">17 czerwca 2025</span>
-                        <span class="category">Biznes lokalny</span>
-                    </div>
-                    <h1 class="article-title">Nowa strategia rozwoju lokalnego centrum handlowego. "To najbardziej ambitny projekt w regionie" (WYWIAD)</h1>
-                    <p class="article-lead">Prezes lokalnej spółki deweloperskiej ujawnia szczegóły inwestycji wartej 120 mln złotych. Projekt ma zmienić oblicze centrum miasta i stworzyć 500 nowych miejsc pracy.</p>
-                    <div class="article-image">
-                        <div class="placeholder-image">📊</div>
-                        <span class="image-caption">Wizualizacja nowego centrum handlowego w centrum miasta</span>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section class="articles-grid">
-            <div class="container">
-                <div class="grid-layout">
-                    <div class="main-column">
-                        <article class="article-card premium">
-                            <div class="article-meta">
-                                <span class="author">Michał Kowalski</span>
-                                <span class="date">16 czerwca 2025</span>
+    <!-- Główny content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-grid">
+                <!-- Lewa kolumna - główne newsy -->
+                <section class="main-column">
+                    <!-- Główny artykuł -->
+                    <article class="featured-article">
+                        <div class="article-image">
+                            <img src="https://via.placeholder.com/800x400/0066cc/ffffff?text=GŁÓWNY+NEWS" alt="Główny news" loading="lazy">
+                            <div class="article-overlay">
+                                <span class="article-category">Samorząd</span>
+                                <h2 class="article-title">Burmistrz Ełku podpisał umowę na budowę nowej szkoły podstawowej</h2>
+                                <p class="article-excerpt">Inwestycja wartości 25 mln złotych powstanie w dzielnicy Północ. Nowa placówka będzie mogła pomieścić 600 uczniów.</p>
+                                <div class="article-meta">
+                                    <span class="article-date">17 czerwca 2025, 14:30</span>
+                                    <span class="article-author">Anna Kowalska</span>
+                                </div>
                             </div>
-                            <h3>Lokalne firmy technologiczne pozyskały 50 mln zł finansowania</h3>
-                            <p class="article-excerpt">Szczegółowa analiza najnowszej rundy inwestycyjnej w lokalnym sektorze technologicznym. Które startupy przyciągnęły największe zainteresowanie inwestorów?</p>
-                            <div class="article-tags">
-                                <span class="tag">Startupy</span>
-                                <span class="tag">Inwestycje</span>
-                                <span class="tag">Technologie</span>
+                        </div>
+                    </article>
+
+                    <!-- Lista newsów -->
+                    <div class="news-list">
+                        <article class="news-item">
+                            <div class="news-image">
+                                <img src="https://via.placeholder.com/200x120/ff6600/ffffff?text=NEWS" alt="News">
+                            </div>
+                            <div class="news-content">
+                                <span class="news-category">Transport</span>
+                                <h3>Nowe rozkłady jazdy autobusów miejskich od lipca</h3>
+                                <p>Zmiany obejmą 5 linii. Dodane zostaną kursy w godzinach popołudniowych...</p>
+                                <div class="news-meta">
+                                    <span class="news-date">16 czerwca 2025</span>
+                                    <span class="news-comments">12 komentarzy</span>
+                                </div>
                             </div>
                         </article>
 
-                        <article class="article-card">
-                            <div class="article-meta">
-                                <span class="author">Anna Nowak</span>
-                                <span class="date">15 czerwca 2025</span>
+                        <article class="news-item">
+                            <div class="news-image">
+                                <img src="https://via.placeholder.com/200x120/00cc66/ffffff?text=SPORT" alt="Sport">
                             </div>
-                            <h3>Transformacja cyfrowa lokalnych urzędów. Stan wdrożenia i wyzwania</h3>
-                            <p class="article-excerpt">Kompleksowy przegląd postępów w digitalizacji administracji lokalnej. Gdzie jesteśmy i co nas czeka w najbliższych miesiącach?</p>
+                            <div class="news-content">
+                                <span class="news-category sport">Sport</span>
+                                <h3>Olimpia Ełk przygotowuje się do nowego sezonu</h3>
+                                <p>Piłkarze rozpoczęli treningi. W planach sparingi z drużynami z wyższej ligi...</p>
+                                <div class="news-meta">
+                                    <span class="news-date">16 czerwca 2025</span>
+                                    <span class="news-comments">8 komentarzy</span>
+                                </div>
+                            </div>
                         </article>
 
-                        <article class="article-card">
-                            <div class="article-meta">
-                                <span class="author">Piotr Wiśniewski</span>
-                                <span class="date">14 czerwca 2025</span>
+                        <article class="news-item">
+                            <div class="news-image">
+                                <img src="https://via.placeholder.com/200x120/cc0066/ffffff?text=KULTURA" alt="Kultura">
                             </div>
-                            <h3>Rynek nieruchomości komercyjnych w regionie. Analiza trendów</h3>
-                            <p class="article-excerpt">Pogłębione spojrzenie na lokalny rynek nieruchomości biurowych i handlowych. Dane, prognozy i opinie ekspertów.</p>
+                            <div class="news-content">
+                                <span class="news-category culture">Kultura</span>
+                                <h3>Festiwal Kultury Mazurskiej w lipcu w Ełku</h3>
+                                <p>Trzydniowe wydarzenie z koncertami, warsztatami i wystawami...</p>
+                                <div class="news-meta">
+                                    <span class="news-date">15 czerwca 2025</span>
+                                    <span class="news-comments">15 komentarzy</span>
+                                </div>
+                            </div>
                         </article>
                     </div>
 
-                    <aside class="sidebar">
-                        <div class="widget">
-                            <h4>Najważniejsze dzisiaj</h4>
-                            <ul class="news-list">
-                                <li>
-                                    <span class="time">14:30</span>
-                                    <a href="#">Lokalna spółka giełdowa zwiększa zatrudnienie o 20%</a>
-                                </li>
-                                <li>
-                                    <span class="time">12:15</span>
-                                    <a href="#">Nowe przepisy podatkowe dla małych firm</a>
-                                </li>
-                                <li>
-                                    <span class="time">10:45</span>
-                                    <a href="#">Inauguracja nowego inkubatora przedsiębiorczości</a>
-                                </li>
-                                <li>
-                                    <span class="time">09:30</span>
-                                    <a href="#">Wyniki finansowe największych lokalnych pracodawców</a>
-                                </li>
-                            </ul>
+                    <!-- Banner reklamowy środek -->
+                    <div class="ad-banner-middle">
+                        <span class="ad-label">REKLAMA</span>
+                        <div class="ad-content-large">
+                            <img src="https://via.placeholder.com/728x90/ff6600/ffffff?text=REKLAMA+-+RESTAURACJA+VILLA+EŁK+-+REZERWACJE:+87-123-4567" alt="Reklama">
                         </div>
+                    </div>
 
-                        <div class="widget subscription-widget">
-                            <h4>Dostęp premium</h4>
-                            <p>Pogłębione analizy, wywiady z liderami biznesu i raporty rynkowe tylko dla subskrybentów.</p>
-                            <button class="premium-btn">Sprawdź ofertę</button>
+                    <!-- Więcej newsów -->
+                    <div class="more-news">
+                        <h3>Więcej wiadomości</h3>
+                        <div class="more-news-grid">
+                            <article class="mini-news">
+                                <h4>Remont ulicy Armii Krajowej zakończony</h4>
+                                <span class="mini-date">15 czerwca</span>
+                            </article>
+                            <article class="mini-news">
+                                <h4>Nowe miejsca parkingowe w centrum miasta</h4>
+                                <span class="mini-date">14 czerwca</span>
+                            </article>
+                            <article class="mini-news">
+                                <h4>Koncert charytatywny w amfiteatrze</h4>
+                                <span class="mini-date">14 czerwca</span>
+                            </article>
+                            <article class="mini-news">
+                                <h4>Otwarto nową ścieżkę rowerową</h4>
+                                <span class="mini-date">13 czerwca</span>
+                            </article>
                         </div>
+                    </div>
+                </section>
 
-                        <div class="widget">
-                            <h4>Newsletter</h4>
-                            <p>Najważniejsze informacje z lokalnej gospodarki w Twojej skrzynce.</p>
-                            <form class="newsletter-form">
-                                <input type="email" placeholder="Twój email">
-                                <button type="submit">Zapisz się</button>
-                            </form>
+                <!-- Prawa kolumna - sidebar -->
+                <aside class="sidebar">
+                    <!-- Najczęściej czytane -->
+                    <div class="widget popular-widget">
+                        <h3 class="widget-title">Najpopularniejsze</h3>
+                        <ol class="popular-list">
+                            <li>
+                                <a href="#">Nowa inwestycja mieszkaniowa na Mazurach</a>
+                                <span class="popular-views">2.3k wyświetleń</span>
+                            </li>
+                            <li>
+                                <a href="#">Wyniki egzaminów ósmoklasisty w Ełku</a>
+                                <span class="popular-views">1.8k wyświetleń</span>
+                            </li>
+                            <li>
+                                <a href="#">Nowy dyrektor szpitala powiatowego</a>
+                                <span class="popular-views">1.5k wyświetleń</span>
+                            </li>
+                            <li>
+                                <a href="#">Zamknięcie basenu na wakacje</a>
+                                <span class="popular-views">1.2k wyświetleń</span>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <!-- Ogłoszenia premium -->
+                    <div class="widget ads-widget">
+                        <h3 class="widget-title">Ogłoszenia premium</h3>
+                        <div class="premium-ads">
+                            <div class="premium-ad">
+                                <div class="ad-image">
+                                    <img src="https://via.placeholder.com/100x100/0066cc/ffffff?text=DOM" alt="Dom">
+                                </div>
+                                <div class="ad-details">
+                                    <h4>Dom 120m² z garażem</h4>
+                                    <p class="ad-price">580 000 zł</p>
+                                    <p class="ad-location">Ełk - Centrum</p>
+                                </div>
+                            </div>
+                            <div class="premium-ad">
+                                <div class="ad-image">
+                                    <img src="https://via.placeholder.com/100x100/ff6600/ffffff?text=AUTO" alt="Auto">
+                                </div>
+                                <div class="ad-details">
+                                    <h4>Toyota Corolla 2020</h4>
+                                    <p class="ad-price">85 000 zł</p>
+                                    <p class="ad-location">Ełk - Południe</p>
+                                </div>
+                            </div>
+                            <div class="premium-ad">
+                                <div class="ad-image">
+                                    <img src="https://via.placeholder.com/100x100/00cc66/ffffff?text=PRACA" alt="Praca">
+                                </div>
+                                <div class="ad-details">
+                                    <h4>Kasjer/ka do sklepu</h4>
+                                    <p class="ad-price">3 500 zł netto</p>
+                                    <p class="ad-location">Ełk - Centrum</p>
+                                </div>
+                            </div>
                         </div>
-                    </aside>
-                </div>
+                        <button class="btn-more-ads">Zobacz wszystkie ogłoszenia</button>
+                    </div>
+
+                    <!-- Pogoda -->
+                    <div class="widget weather-widget">
+                        <h3 class="widget-title">Pogoda w Ełku</h3>
+                        <div class="weather-current">
+                            <div class="weather-today">
+                                <span class="weather-icon-big">☀️</span>
+                                <div class="weather-details">
+                                    <span class="temp-big">22°C</span>
+                                    <span class="weather-status">Słonecznie</span>
+                                    <span class="feels-like">Odczuwalna: 24°C</span>
+                                </div>
+                            </div>
+                            <div class="weather-stats">
+                                <div class="weather-stat">
+                                    <span class="stat-label">Wiatr</span>
+                                    <span class="stat-value">12 km/h</span>
+                                </div>
+                                <div class="weather-stat">
+                                    <span class="stat-label">Wilgotność</span>
+                                    <span class="stat-value">65%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Imprezy -->
+                    <div class="widget events-widget">
+                        <h3 class="widget-title">Nadchodzące imprezy</h3>
+                        <div class="events-list">
+                            <div class="event-item">
+                                <div class="event-date">
+                                    <span class="event-day">22</span>
+                                    <span class="event-month">CZE</span>
+                                </div>
+                                <div class="event-details">
+                                    <h4>Noc Świętojańska</h4>
+                                    <p>Amfiteatr, 19:00</p>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date">
+                                    <span class="event-day">28</span>
+                                    <span class="event-month">CZE</span>
+                                </div>
+                                <div class="event-details">
+                                    <h4>Festiwal Smaków</h4>
+                                    <p>Rynek, 12:00-20:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Banner boczny -->
+                    <div class="ad-banner-side">
+                        <span class="ad-label">REKLAMA</span>
+                        <img src="https://via.placeholder.com/300x250/cc0066/ffffff?text=TWOJA+REKLAMA+TUTAJ" alt="Reklama boczna">
+                    </div>
+                </aside>
             </div>
-        </section>
-
-        <section class="categories-section">
-            <div class="container">
-                <h3>Kategorie</h3>
-                <div class="categories-grid">
-                    <div class="category-card">
-                        <div class="category-icon">💼</div>
-                        <h4>Biznes lokalny</h4>
-                        <p>Strategie, fuzje, przejęcia i rozwój lokalnych przedsiębiorstw</p>
-                    </div>
-                    <div class="category-card">
-                        <div class="category-icon">📊</div>
-                        <h4>Analizy rynkowe</h4>
-                        <p>Pogłębione raporty i prognozy ekonomiczne dla regionu</p>
-                    </div>
-                    <div class="category-card">
-                        <div class="category-icon">🚀</div>
-                        <h4>Innowacje</h4>
-                        <p>Startupy, technologie i przedsiębiorczość przyszłości</p>
-                    </div>
-                    <div class="category-card">
-                        <div class="category-icon">🏛️</div>
-                        <h4>Polityka gospodarcza</h4>
-                        <p>Regulacje, podatki i decyzje władz lokalnych</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
     </main>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-main">
-                    <div class="footer-section">
-                        <h3>Local News</h3>
-                        <p>Niezależne medium informacyjne o profilu ekonomicznym. Nie piszemy tylko o biznesie i rynkach - znajdziesz u nas także informacje o technologiach, polityce i kulturze.</p>
-                        <div class="social-links">
-                            <a href="#">LinkedIn</a>
-                            <a href="#">Twitter</a>
-                            <a href="#">Newsletter</a>
-                        </div>
+                <div class="footer-section">
+                    <h4>Ełk24.pl</h4>
+                    <p>Lokalny portal informacyjny miasta Ełk i okolic. Aktualności, ogłoszenia, imprezy.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Facebook</a>
+                        <a href="#" class="social-link">Instagram</a>
+                        <a href="#" class="social-link">YouTube</a>
                     </div>
-                    <div class="footer-section">
-                        <h4>Kategorie</h4>
-                        <ul>
-                            <li><a href="#">Ekonomia</a></li>
-                            <li><a href="#">Biznes</a></li>
-                            <li><a href="#">Technologie</a></li>
-                            <li><a href="#">Analizy</a></li>
-                            <li><a href="#">Startupy</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-section">
-                        <h4>O nas</h4>
-                        <ul>
-                            <li><a href="#">Redakcja</a></li>
-                            <li><a href="#">Kontakt</a></li>
-                            <li><a href="#">Reklama</a></li>
-                            <li><a href="#">Subskrypcja</a></li>
-                            <li><a href="#">Regulamin</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-section">
-                        <h4>Subskrypcja</h4>
-                        <p>Materiały premium, pogłębione analizy i ekskluzywne treści.</p>
-                        <button class="footer-subscribe-btn">Sprawdź ofertę</button>
-                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Kategorie</h4>
+                    <ul>
+                        <li><a href="#">Aktualności</a></li>
+                        <li><a href="#">Sport</a></li>
+                        <li><a href="#">Kultura</a></li>
+                        <li><a href="#">Biznes</a></li>
+                        <li><a href="#">Ogłoszenia</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Dla firm</h4>
+                    <ul>
+                        <li><a href="#">Cennik reklam</a></li>
+                        <li><a href="#">Współpraca</a></li>
+                        <li><a href="#">Dodaj firmę</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Kontakt</h4>
+                    <p>📧 redakcja@elk24.pl</p>
+                    <p>📞 87-621-0024</p>
+                    <p>📍 ul. Warszawska 15, 19-300 Ełk</p>
+                    <button class="btn-contact">Napisz do nas</button>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Local News. Wszystkie prawa zastrzeżone. | <a href="#">Polityka prywatności</a> | <a href="#">Regulamin</a></p>
+                <p>&copy; 2025 Ełk24.pl. Wszystkie prawa zastrzeżone. | <a href="#">Regulamin</a> | <a href="#">Polityka prywatności</a></p>
             </div>
         </div>
     </footer>
