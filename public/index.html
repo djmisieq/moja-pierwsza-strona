@@ -3,349 +3,383 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ełk24.pl - Portal lokalny Ełku i okolic</title>
+    <title>Portal Lokalny ELK - Najważniejsze wydarzenia w Twojej okolicy</title>
+    <meta name="description" content="Portal lokalny ELK - najświeższe wiadomości, ogłoszenia, wydarzenia lokalne. Twoje źródło informacji o tym co dzieje się w okolicy.">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Ruchomy slider z ogłoszeniami -->
-    <div class="ads-slider">
-        <div class="ads-container">
-            <div class="ads-track">
-                <div class="ad-item">
-                    <span class="ad-label">REKLAMA</span>
-                    <span class="ad-content">🏠 <strong>NIERUCHOMOŚCI EŁK</strong> - Kupno, sprzedaż, wynajem | Tel: 87-621-0000</span>
+    <!-- PREMIUM REKLAMA - SLIDER NA GÓRZE (GŁÓWNE ŹRÓDŁO PRZYCHODU) -->
+    <section class="ads-slider-container">
+        <div class="ads-slider" id="adsSlider">
+            <div class="ad-slide active">
+                <div class="container">
+                    <div class="ad-content">
+                        <div class="ad-text">
+                            <h2>🏠 PREMIUM Nieruchomości ELK</h2>
+                            <p>Największy wybór mieszkań i domów w regionie. Sprawdzone oferty, konkurencyjne ceny!</p>
+                            <a href="#" class="ad-cta">Zobacz oferty</a>
+                        </div>
+                        <div class="ad-visual">
+                            <div class="ad-image">🏡</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="ad-item">
-                    <span class="ad-label">REKLAMA</span>
-                    <span class="ad-content">🚗 <strong>SERWIS BMW EŁK</strong> - Profesjonalna obsługa | ul. Przemysłowa 15</span>
+            </div>
+            <div class="ad-slide">
+                <div class="container">
+                    <div class="ad-content">
+                        <div class="ad-text">
+                            <h2>🚗 AutoMoto ELK - Salon samochodowy</h2>
+                            <p>Największy wybór aut używanych i nowych. Finansowanie, ubezpieczenie, serwis!</p>
+                            <a href="#" class="ad-cta">Sprawdź auta</a>
+                        </div>
+                        <div class="ad-visual">
+                            <div class="ad-image">🚙</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="ad-item">
-                    <span class="ad-label">REKLAMA</span>
-                    <span class="ad-content">⚕️ <strong>PRYWATNA KLINIKA MEDICA</strong> - Bez kolejek, 24/7 | Zapisz się online</span>
-                </div>
-                <div class="ad-item">
-                    <span class="ad-label">REKLAMA</span>
-                    <span class="ad-content">🍕 <strong>PIZZERIA BELLA EŁK</strong> - Najlepsza pizza w mieście | Dostawa gratis</span>
-                </div>
-                <div class="ad-item">
-                    <span class="ad-label">REKLAMA</span>
-                    <span class="ad-content">💼 <strong>BIURO RACHUNKOWE AS</strong> - Księgowość, ZUS, podatki | ul. Mickiewicza 23</span>
+            </div>
+            <div class="ad-slide">
+                <div class="container">
+                    <div class="ad-content">
+                        <div class="ad-text">
+                            <h2>🛠️ Remont-ELK - Fachowe usługi budowlane</h2>
+                            <p>Kompleksowe remonty, wykończenia, instalacje. 15 lat doświadczenia!</p>
+                            <a href="#" class="ad-cta">Bezpłatna wycena</a>
+                        </div>
+                        <div class="ad-visual">
+                            <div class="ad-image">🔨</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+        <!-- Nawigacja slider -->
+        <div class="slider-nav">
+            <button class="prev-btn" onclick="changeSlide(-1)">‹</button>
+            <div class="dots">
+                <span class="dot active" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+            <button class="next-btn" onclick="changeSlide(1)">›</button>
+        </div>
+    </section>
 
     <!-- Header -->
     <header class="header">
         <div class="container">
-            <div class="header-top">
-                <div class="logo-section">
-                    <h1 class="logo">Ełk24.pl</h1>
-                    <p class="tagline">Twoje miasto na bieżąco</p>
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Portal ELK</h1>
+                    <span>Lokalne wiadomości</span>
                 </div>
-                <div class="header-info">
-                    <div class="weather">
-                        <span class="weather-icon">☀️</span>
-                        <span class="weather-temp">22°C</span>
-                        <span class="weather-desc">Słonecznie</span>
-                    </div>
-                    <div class="date-time">
-                        <span class="current-date" id="currentDate"></span>
-                        <span class="current-time" id="currentTime"></span>
-                    </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="#aktualnosci">Aktualności</a></li>
+                        <li><a href="#ogloszenia">Ogłoszenia</a></li>
+                        <li><a href="#wydarzenia">Wydarzenia</a></li>
+                        <li><a href="#biznes">Biznes</a></li>
+                        <li><a href="#sport">Sport</a></li>
+                        <li><a href="#kontakt">Kontakt</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <button class="search-btn" onclick="toggleSearch()">🔍</button>
+                    <a href="#dodaj-ogloszenie" class="btn-primary">Dodaj ogłoszenie</a>
                 </div>
             </div>
-            <nav class="main-nav">
-                <ul class="nav-menu">
-                    <li><a href="#aktualnosci" class="active">Aktualności</a></li>
-                    <li><a href="#sport">Sport</a></li>
-                    <li><a href="#kultura">Kultura</a></li>
-                    <li><a href="#biznes">Biznes</a></li>
-                    <li><a href="#ogloszenia" class="highlight">Ogłoszenia</a></li>
-                    <li><a href="#imprezy">Imprezy</a></li>
-                    <li><a href="#kontakt">Kontakt</a></li>
-                </ul>
-                <div class="nav-actions">
-                    <button class="btn-add-ad">+ Dodaj ogłoszenie</button>
-                    <button class="search-btn">🔍</button>
-                </div>
-            </nav>
         </div>
     </header>
 
-    <!-- Główny content -->
+    <!-- BANNER REKLAMOWY POD SLIDEREM -->
+    <section class="banner-ad">
+        <div class="container">
+            <div class="banner-content">
+                <span class="sponsored">Sponsorowane</span>
+                <div class="banner-text">
+                    <strong>📱 TELEFONY ELK</strong> - Największy wybór smartfonów i akcesoriów. Serwis, naprawy, wymiana ekranów!
+                </div>
+                <a href="#" class="banner-btn">Sprawdź →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
     <main class="main-content">
         <div class="container">
             <div class="content-grid">
-                <!-- Lewa kolumna - główne newsy -->
-                <section class="main-column">
+                <!-- Kolumna główna z newsami -->
+                <section class="news-section">
+                    <div class="section-header">
+                        <h2>🏃‍♂️ Najważniejsze wydarzenia</h2>
+                        <div class="news-filters">
+                            <button class="filter-btn active">Wszystkie</button>
+                            <button class="filter-btn">Dzisiaj</button>
+                            <button class="filter-btn">Najpopularniejsze</button>
+                        </div>
+                    </div>
+
                     <!-- Główny artykuł -->
-                    <article class="featured-article">
+                    <article class="main-article">
                         <div class="article-image">
-                            <img src="https://via.placeholder.com/800x400/0066cc/ffffff?text=GŁÓWNY+NEWS" alt="Główny news" loading="lazy">
-                            <div class="article-overlay">
-                                <span class="article-category">Samorząd</span>
-                                <h2 class="article-title">Burmistrz Ełku podpisał umowę na budowę nowej szkoły podstawowej</h2>
-                                <p class="article-excerpt">Inwestycja wartości 25 mln złotych powstanie w dzielnicy Północ. Nowa placówka będzie mogła pomieścić 600 uczniów.</p>
-                                <div class="article-meta">
-                                    <span class="article-date">17 czerwca 2025, 14:30</span>
-                                    <span class="article-author">Anna Kowalska</span>
-                                </div>
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect width='100%25' height='100%25' fill='%23e2e8f0'/%3E%3Ctext x='50%25' y='50%25' font-size='24' text-anchor='middle' dy='.3em' fill='%23475569'%3EZdjęcie artykułu%3C/text%3E%3C/svg%3E" alt="Wydarzenie">
+                            <span class="article-category">Aktualności</span>
+                        </div>
+                        <div class="article-content">
+                            <h2>Nowy park rekreacyjny w centrum ELK - oficjalne otwarcie już w przyszłym tygodniu</h2>
+                            <p class="article-meta">
+                                <span>📅 Dzisiaj, 15:30</span>
+                                <span>👁️ 234 wyświetleń</span>
+                                <span>💬 12 komentarzy</span>
+                            </p>
+                            <p>Mieszkańcy ELK z niecierpliwością czekają na otwarcie nowego parku rekreacyjnego w centrum miasta. Inwestycja o wartości 2,5 mln złotych obejmuje nowoczesny plac zabaw, siłownię zewnętrzną oraz ścieżki rowerowe...</p>
+                            <a href="#" class="read-more">Czytaj więcej →</a>
+                        </div>
+                    </article>
+
+                    <!-- SPONSORED CONTENT (NATYWNA REKLAMA) -->
+                    <article class="sponsored-article">
+                        <div class="sponsored-badge">Treść sponsorowana</div>
+                        <div class="article-content">
+                            <div class="sponsor-logo">🏢</div>
+                            <div>
+                                <h3>Firma sprzątająca CleanELK - profesjonalne sprzątanie biur i mieszkań</h3>
+                                <p>Szukasz profesjonalnej firmy sprzątającej? CleanELK oferuje kompleksowe usługi sprzątania dla firm i osób prywatnych. Doświadczony zespół, nowoczesny sprzęt!</p>
+                                <a href="#" class="sponsor-cta">Darmowa wycena →</a>
                             </div>
                         </div>
                     </article>
 
-                    <!-- Lista newsów -->
-                    <div class="news-list">
-                        <article class="news-item">
-                            <div class="news-image">
-                                <img src="https://via.placeholder.com/200x120/ff6600/ffffff?text=NEWS" alt="News">
+                    <!-- Lista dalszych artykułów -->
+                    <div class="articles-list">
+                        <article class="article-item">
+                            <div class="article-thumb">
+                                <div class="placeholder-img">📰</div>
                             </div>
-                            <div class="news-content">
-                                <span class="news-category">Transport</span>
-                                <h3>Nowe rozkłady jazdy autobusów miejskich od lipca</h3>
-                                <p>Zmiany obejmą 5 linii. Dodane zostaną kursy w godzinach popołudniowych...</p>
-                                <div class="news-meta">
-                                    <span class="news-date">16 czerwca 2025</span>
-                                    <span class="news-comments">12 komentarzy</span>
-                                </div>
+                            <div class="article-info">
+                                <h3>Modernizacja dróg w ELK - które ulice będą remontowane?</h3>
+                                <p class="meta">📅 2 godziny temu • 👁️ 156 wyświetleń</p>
                             </div>
                         </article>
 
-                        <article class="news-item">
-                            <div class="news-image">
-                                <img src="https://via.placeholder.com/200x120/00cc66/ffffff?text=SPORT" alt="Sport">
+                        <article class="article-item">
+                            <div class="article-thumb">
+                                <div class="placeholder-img">🏀</div>
                             </div>
-                            <div class="news-content">
-                                <span class="news-category sport">Sport</span>
-                                <h3>Olimpia Ełk przygotowuje się do nowego sezonu</h3>
-                                <p>Piłkarze rozpoczęli treningi. W planach sparingi z drużynami z wyższej ligi...</p>
-                                <div class="news-meta">
-                                    <span class="news-date">16 czerwca 2025</span>
-                                    <span class="news-comments">8 komentarzy</span>
-                                </div>
+                            <div class="article-info">
+                                <h3>Koszykarze ELK wygrywają kolejny mecz - relacja z meczu</h3>
+                                <p class="meta">📅 4 godziny temu • 👁️ 89 wyświetleń</p>
                             </div>
                         </article>
 
-                        <article class="news-item">
-                            <div class="news-image">
-                                <img src="https://via.placeholder.com/200x120/cc0066/ffffff?text=KULTURA" alt="Kultura">
+                        <article class="article-item">
+                            <div class="article-thumb">
+                                <div class="placeholder-img">🏪</div>
                             </div>
-                            <div class="news-content">
-                                <span class="news-category culture">Kultura</span>
-                                <h3>Festiwal Kultury Mazurskiej w lipcu w Ełku</h3>
-                                <p>Trzydniowe wydarzenie z koncertami, warsztatami i wystawami...</p>
-                                <div class="news-meta">
-                                    <span class="news-date">15 czerwca 2025</span>
-                                    <span class="news-comments">15 komentarzy</span>
-                                </div>
+                            <div class="article-info">
+                                <h3>Nowe sklepy w centrum handlowym - co nas czeka?</h3>
+                                <p class="meta">📅 6 godzin temu • 👁️ 203 wyświetleń</p>
                             </div>
                         </article>
                     </div>
 
-                    <!-- Banner reklamowy środek -->
-                    <div class="ad-banner-middle">
-                        <span class="ad-label">REKLAMA</span>
-                        <div class="ad-content-large">
-                            <img src="https://via.placeholder.com/728x90/ff6600/ffffff?text=REKLAMA+-+RESTAURACJA+VILLA+EŁK+-+REZERWACJE:+87-123-4567" alt="Reklama">
-                        </div>
-                    </div>
-
-                    <!-- Więcej newsów -->
-                    <div class="more-news">
-                        <h3>Więcej wiadomości</h3>
-                        <div class="more-news-grid">
-                            <article class="mini-news">
-                                <h4>Remont ulicy Armii Krajowej zakończony</h4>
-                                <span class="mini-date">15 czerwca</span>
-                            </article>
-                            <article class="mini-news">
-                                <h4>Nowe miejsca parkingowe w centrum miasta</h4>
-                                <span class="mini-date">14 czerwca</span>
-                            </article>
-                            <article class="mini-news">
-                                <h4>Koncert charytatywny w amfiteatrze</h4>
-                                <span class="mini-date">14 czerwca</span>
-                            </article>
-                            <article class="mini-news">
-                                <h4>Otwarto nową ścieżkę rowerową</h4>
-                                <span class="mini-date">13 czerwca</span>
-                            </article>
-                        </div>
-                    </div>
+                    <button class="load-more-btn">Załaduj więcej artykułów</button>
                 </section>
 
-                <!-- Prawa kolumna - sidebar -->
+                <!-- SIDEBAR Z REKLAMAMI I TREŚCIAMI -->
                 <aside class="sidebar">
-                    <!-- Najczęściej czytane -->
-                    <div class="widget popular-widget">
-                        <h3 class="widget-title">Najpopularniejsze</h3>
-                        <ol class="popular-list">
-                            <li>
-                                <a href="#">Nowa inwestycja mieszkaniowa na Mazurach</a>
-                                <span class="popular-views">2.3k wyświetleń</span>
-                            </li>
-                            <li>
-                                <a href="#">Wyniki egzaminów ósmoklasisty w Ełku</a>
-                                <span class="popular-views">1.8k wyświetleń</span>
-                            </li>
-                            <li>
-                                <a href="#">Nowy dyrektor szpitala powiatowego</a>
-                                <span class="popular-views">1.5k wyświetleń</span>
-                            </li>
-                            <li>
-                                <a href="#">Zamknięcie basenu na wakacje</a>
-                                <span class="popular-views">1.2k wyświetleń</span>
-                            </li>
-                        </ol>
-                    </div>
-
-                    <!-- Ogłoszenia premium -->
-                    <div class="widget ads-widget">
-                        <h3 class="widget-title">Ogłoszenia premium</h3>
-                        <div class="premium-ads">
-                            <div class="premium-ad">
-                                <div class="ad-image">
-                                    <img src="https://via.placeholder.com/100x100/0066cc/ffffff?text=DOM" alt="Dom">
-                                </div>
-                                <div class="ad-details">
-                                    <h4>Dom 120m² z garażem</h4>
-                                    <p class="ad-price">580 000 zł</p>
-                                    <p class="ad-location">Ełk - Centrum</p>
-                                </div>
-                            </div>
-                            <div class="premium-ad">
-                                <div class="ad-image">
-                                    <img src="https://via.placeholder.com/100x100/ff6600/ffffff?text=AUTO" alt="Auto">
-                                </div>
-                                <div class="ad-details">
-                                    <h4>Toyota Corolla 2020</h4>
-                                    <p class="ad-price">85 000 zł</p>
-                                    <p class="ad-location">Ełk - Południe</p>
-                                </div>
-                            </div>
-                            <div class="premium-ad">
-                                <div class="ad-image">
-                                    <img src="https://via.placeholder.com/100x100/00cc66/ffffff?text=PRACA" alt="Praca">
-                                </div>
-                                <div class="ad-details">
-                                    <h4>Kasjer/ka do sklepu</h4>
-                                    <p class="ad-price">3 500 zł netto</p>
-                                    <p class="ad-location">Ełk - Centrum</p>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="btn-more-ads">Zobacz wszystkie ogłoszenia</button>
-                    </div>
-
-                    <!-- Pogoda -->
-                    <div class="widget weather-widget">
-                        <h3 class="widget-title">Pogoda w Ełku</h3>
-                        <div class="weather-current">
-                            <div class="weather-today">
-                                <span class="weather-icon-big">☀️</span>
-                                <div class="weather-details">
-                                    <span class="temp-big">22°C</span>
-                                    <span class="weather-status">Słonecznie</span>
-                                    <span class="feels-like">Odczuwalna: 24°C</span>
-                                </div>
-                            </div>
-                            <div class="weather-stats">
-                                <div class="weather-stat">
-                                    <span class="stat-label">Wiatr</span>
-                                    <span class="stat-value">12 km/h</span>
-                                </div>
-                                <div class="weather-stat">
-                                    <span class="stat-label">Wilgotność</span>
-                                    <span class="stat-value">65%</span>
-                                </div>
+                    <!-- STICKY BANNER REKLAMOWY #1 -->
+                    <div class="sidebar-ad sticky-ad">
+                        <div class="ad-label">Reklama</div>
+                        <div class="sidebar-ad-content">
+                            <div class="ad-icon">💊</div>
+                            <div>
+                                <h4>Apteka ELK</h4>
+                                <p>Darmowa dostawa leków do domu!</p>
+                                <button class="ad-btn">Zamów →</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Imprezy -->
-                    <div class="widget events-widget">
-                        <h3 class="widget-title">Nadchodzące imprezy</h3>
-                        <div class="events-list">
-                            <div class="event-item">
-                                <div class="event-date">
-                                    <span class="event-day">22</span>
-                                    <span class="event-month">CZE</span>
-                                </div>
-                                <div class="event-details">
-                                    <h4>Noc Świętojańska</h4>
-                                    <p>Amfiteatr, 19:00</p>
-                                </div>
+                    <!-- Najpopularniejsze ogłoszenia -->
+                    <section class="popular-ads">
+                        <h3>🔥 Najgorętsze ogłoszenia</h3>
+                        <div class="ad-item">
+                            <div class="ad-image-small">🏠</div>
+                            <div class="ad-details">
+                                <h4>Dom do wynajęcia</h4>
+                                <p>4 pokoje, centrum ELK</p>
+                                <span class="price">2500 zł/mies</span>
                             </div>
-                            <div class="event-item">
-                                <div class="event-date">
-                                    <span class="event-day">28</span>
-                                    <span class="event-month">CZE</span>
-                                </div>
-                                <div class="event-details">
-                                    <h4>Festiwal Smaków</h4>
-                                    <p>Rynek, 12:00-20:00</p>
-                                </div>
+                        </div>
+                        <div class="ad-item">
+                            <div class="ad-image-small">🚗</div>
+                            <div class="ad-details">
+                                <h4>VW Golf 2018</h4>
+                                <p>Benzyna, 85 000 km</p>
+                                <span class="price">45 000 zł</span>
+                            </div>
+                        </div>
+                        <div class="ad-item">
+                            <div class="ad-image-small">💼</div>
+                            <div class="ad-details">
+                                <h4>Praca: Księgowa</h4>
+                                <p>Pełen etat, centrum</p>
+                                <span class="price">4500 zł</span>
+                            </div>
+                        </div>
+                        <a href="#wszystkie-ogloszenia" class="view-all">Zobacz wszystkie →</a>
+                    </section>
+
+                    <!-- BANNER REKLAMOWY #2 -->
+                    <div class="sidebar-ad">
+                        <div class="ad-label">Reklama</div>
+                        <div class="sidebar-ad-content">
+                            <div class="ad-icon">🍕</div>
+                            <div>
+                                <h4>Pizzeria Da Vinci</h4>
+                                <p>Najlepsza pizza w ELK! Dostawa gratis!</p>
+                                <button class="ad-btn">Zamów →</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Banner boczny -->
-                    <div class="ad-banner-side">
-                        <span class="ad-label">REKLAMA</span>
-                        <img src="https://via.placeholder.com/300x250/cc0066/ffffff?text=TWOJA+REKLAMA+TUTAJ" alt="Reklama boczna">
+                    <!-- Newsletter -->
+                    <section class="newsletter">
+                        <h3>📧 Newsletter lokalny</h3>
+                        <p>Bądź na bieżąco z najważniejszymi wydarzeniami w ELK!</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Twój email" required>
+                            <button type="submit">Zapisz się</button>
+                        </form>
+                        <p class="newsletter-info">✓ Bez spamu ✓ Tylko lokalne newsy ✓ Możliwość rezygnacji</p>
+                    </section>
+
+                    <!-- BANNER REKLAMOWY #3 -->
+                    <div class="sidebar-ad">
+                        <div class="ad-label">Reklama</div>
+                        <div class="sidebar-ad-content">
+                            <div class="ad-icon">🔧</div>
+                            <div>
+                                <h4>Hydraulik 24/7</h4>
+                                <p>Awarie, instalacje, naprawy. Dojazd gratis!</p>
+                                <button class="ad-btn">Zadzwoń →</button>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- Pogoda lokalna -->
+                    <section class="weather-widget">
+                        <h3>🌤️ Pogoda w ELK</h3>
+                        <div class="weather-info">
+                            <div class="temp">12°C</div>
+                            <div class="condition">Pochmurno</div>
+                            <div class="details">
+                                <span>🌧️ Deszcz: 30%</span>
+                                <span>💨 Wiatr: 15 km/h</span>
+                            </div>
+                        </div>
+                    </section>
                 </aside>
             </div>
         </div>
     </main>
+
+    <!-- DOLNY BANNER REKLAMOWY -->
+    <section class="bottom-banner">
+        <div class="container">
+            <div class="banner-grid">
+                <div class="banner-item">
+                    <div class="banner-icon">🏥</div>
+                    <div>
+                        <h4>Przychodnia ELK</h4>
+                        <p>Rejestracja online, szybkie terminy</p>
+                    </div>
+                </div>
+                <div class="banner-item">
+                    <div class="banner-icon">🚓</div>
+                    <div>
+                        <h4>Taxi ELK</h4>
+                        <p>Najtańsze przejazdy po mieście</p>
+                    </div>
+                </div>
+                <div class="banner-item">
+                    <div class="banner-icon">🎓</div>
+                    <div>
+                        <h4>Szkoła językowa</h4>
+                        <p>Angielski, niemiecki - kursy dla każdego</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>Ełk24.pl</h4>
-                    <p>Lokalny portal informacyjny miasta Ełk i okolic. Aktualności, ogłoszenia, imprezy.</p>
+                    <h4>Portal ELK</h4>
+                    <p>Twoje lokalne źródło informacji o wszystkim co dzieje się w ELK i okolicach.</p>
                     <div class="social-links">
-                        <a href="#" class="social-link">Facebook</a>
-                        <a href="#" class="social-link">Instagram</a>
-                        <a href="#" class="social-link">YouTube</a>
+                        <a href="#">📘 Facebook</a>
+                        <a href="#">📷 Instagram</a>
+                        <a href="#">🐦 Twitter</a>
                     </div>
                 </div>
                 <div class="footer-section">
                     <h4>Kategorie</h4>
                     <ul>
                         <li><a href="#">Aktualności</a></li>
-                        <li><a href="#">Sport</a></li>
-                        <li><a href="#">Kultura</a></li>
-                        <li><a href="#">Biznes</a></li>
                         <li><a href="#">Ogłoszenia</a></li>
+                        <li><a href="#">Wydarzenia</a></li>
+                        <li><a href="#">Sport</a></li>
+                        <li><a href="#">Biznes</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Dla firm</h4>
                     <ul>
+                        <li><a href="#">Reklamuj się u nas</a></li>
                         <li><a href="#">Cennik reklam</a></li>
-                        <li><a href="#">Współpraca</a></li>
-                        <li><a href="#">Dodaj firmę</a></li>
-                        <li><a href="#">Newsletter</a></li>
+                        <li><a href="#">Dodaj ogłoszenie</a></li>
+                        <li><a href="#">Kontakt handlowy</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Kontakt</h4>
-                    <p>📧 redakcja@elk24.pl</p>
-                    <p>📞 87-621-0024</p>
-                    <p>📍 ul. Warszawska 15, 19-300 Ełk</p>
-                    <button class="btn-contact">Napisz do nas</button>
+                    <p>📍 ul. Główna 123, ELK</p>
+                    <p>📞 (+48) 123 456 789</p>
+                    <p>✉️ kontakt@portalelk.pl</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Ełk24.pl. Wszystkie prawa zastrzeżone. | <a href="#">Regulamin</a> | <a href="#">Polityka prywatności</a></p>
+                <p>&copy; 2025 Portal ELK. Wszystkie prawa zastrzeżone.</p>
+                <div class="footer-links">
+                    <a href="#">Regulamin</a>
+                    <a href="#">Polityka prywatności</a>
+                    <a href="#">Cookies</a>
+                </div>
             </div>
         </div>
     </footer>
+
+    <!-- FLOATING CTA (Call-to-Action) -->
+    <div class="floating-cta">
+        <button onclick="openAdForm()">💰 Dodaj ogłoszenie za darmo!</button>
+    </div>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <input type="text" placeholder="Szukaj w portalu..." class="search-input">
+            <button onclick="toggleSearch()">✕</button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
