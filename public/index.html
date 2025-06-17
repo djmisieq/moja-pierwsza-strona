@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local News - Portal Lokalnych Newsów</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <h1>📰 Local News</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#aktunosci">Aktualności</a></li>
+                    <li><a href="#sport">Sport</a></li>
+                    <li><a href="#kultura">Kultura</a></li>
+                    <li><a href="#ogłoszenia">Ogłoszenia</a></li>
+                    <li><a href="#kontakt">Kontakt</a></li>
+                </ul>
+                <div class="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Lokalny Portal Newsów</h2>
+                <p>Twoje miasto, Twoje wiadomości. Wszystko co najważniejsze w Twojej okolicy.</p>
+                <button class="cta-button">Czytaj najnowsze</button>
+            </div>
+        </section>
+
+        <section id="aktunosci" class="news-section">
+            <div class="container">
+                <h2 class="section-title">📋 Najnowsze Aktualności</h2>
+                <div class="news-grid">
+                    <article class="news-card featured">
+                        <div class="news-image">
+                            <div class="placeholder-image">🏛️</div>
+                        </div>
+                        <div class="news-content">
+                            <span class="news-category">Samorząd</span>
+                            <h3>Nowa inwestycja w centrum miasta</h3>
+                            <p>Rada miejska zatwierdziła budżet na modernizację głównego placu. Prace rozpoczną się w przyszłym miesiącu.</p>
+                            <div class="news-meta">
+                                <span class="news-date">17 czerwca 2025</span>
+                                <span class="news-author">Redakcja</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="news-image">
+                            <div class="placeholder-image">🚧</div>
+                        </div>
+                        <div class="news-content">
+                            <span class="news-category">Komunikacja</span>
+                            <h3>Utrudnienia na ul. Głównej</h3>
+                            <p>Od poniedziałku remont nawierzchni. Objazd przez ul. Polną.</p>
+                            <div class="news-meta">
+                                <span class="news-date">16 czerwca 2025</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="news-image">
+                            <div class="placeholder-image">🎭</div>
+                        </div>
+                        <div class="news-content">
+                            <span class="news-category">Kultura</span>
+                            <h3>Festiwal Letni 2025</h3>
+                            <p>Program wydarzenia już dostępny. Wystąpi 15 zespołów lokalnych.</p>
+                            <div class="news-meta">
+                                <span class="news-date">15 czerwca 2025</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <button class="load-more">Załaduj więcej newsów</button>
+            </div>
+        </section>
+
+        <section id="ogłoszenia" class="announcements">
+            <div class="container">
+                <h2 class="section-title">📢 Ogłoszenia</h2>
+                <div class="announcements-grid">
+                    <div class="announcement-card">
+                        <div class="announcement-icon">💼</div>
+                        <h3>Praca</h3>
+                        <p>Poszukujemy kasiera do sklepu</p>
+                        <span class="announcement-date">Dziś</span>
+                    </div>
+                    <div class="announcement-card">
+                        <div class="announcement-icon">🏠</div>
+                        <h3>Nieruchomości</h3>
+                        <p>Wynajmę mieszkanie 2-pokojowe</p>
+                        <span class="announcement-date">Wczoraj</span>
+                    </div>
+                    <div class="announcement-card">
+                        <div class="announcement-icon">🚗</div>
+                        <h3>Motoryzacja</h3>
+                        <p>Sprzedam Ford Focus 2018</p>
+                        <span class="announcement-date">2 dni temu</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Local News</h3>
+                    <p>Portal lokalnych wiadomości i ogłoszeń</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Kontakt</h4>
+                    <p>📧 redakcja@localnews.pl</p>
+                    <p>📞 +48 123 456 789</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Kategorie</h4>
+                    <ul>
+                        <li><a href="#aktunosci">Aktualności</a></li>
+                        <li><a href="#sport">Sport</a></li>
+                        <li><a href="#kultura">Kultura</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Local News Portal. Wszystkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
